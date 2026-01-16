@@ -15,7 +15,11 @@
   <meta charset="utf-8">
 
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,500">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
@@ -29,13 +33,18 @@
     }
 
     .dados-usuarios a {
-      color: #fff;
+      color: #fff !important;
       text-decoration: none;
       margin-left: 10px;
     }
 
     .dados-usuarios a:hover {
-      color: #ccc;
+      color: #ccc !important;
+    }
+
+    /* Forçar cores de ícones que podem sumir */
+    .icon {
+      color: inherit;
     }
   </style>
 </head>
@@ -68,18 +77,20 @@
 
                   <div class="rd-navbar-basket-wrap">
                     <button class="rd-navbar-basket fl-bigmug-line-shopping198"
-                      data-rd-navbar-toggle=".cart-inline"><span>2</span></button>
+                      data-rd-navbar-toggle=".cart-inline">
+                      <span>2</span>
+                    </button>
                     <div class="cart-inline">
                       <div class="cart-inline-header">
                         <?php if (isset($_SESSION['nome_usuario'])): ?>
-                          <span class="dados-usuarios">
+                          <div class="dados-usuarios">
                             <p>
                               Olá,
                               <strong><?php echo explode(' ', $_SESSION['nome_usuario'])[0]; ?></strong>
-                              <a href="logout.php" title="Sair"><img src="images/logout.png"
-                                  width="18px"></a>
+                              <a href="logout.php" title="Sair"><i
+                                  class="fas fa-sign-out-alt"></i></a>
                             </p>
-                          </span>
+                          </div>
                         <?php endif; ?>
                         <h5 class="cart-inline-title">Carrinho:<span> 2</span> Produtos</h5>
                       </div>
@@ -87,17 +98,16 @@
                   </div>
 
                   <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="index.php">Inicio</a></li>
+                    <li class="rd-nav-item active"><a class="rd-nav-link"
+                        href="index.php">Inicio</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="sobre.php">Sobre</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="contatos.php">Contatos</a>
                     </li>
 
                     <?php
-                    // Lógica de exibição Login / Painel
                     if (!isset($_SESSION['nome_usuario'])) {
                       echo '<li class="rd-nav-item"><a class="rd-nav-link" href="login.php">Login</a></li>';
                     } else {
-                      // Define a pasta de destino baseada no nível salvo no autenticar.php
                       $pasta_painel = 'painel-cliente';
                       if ($_SESSION['nivel_usuario'] == 'Admin') $pasta_painel = 'painel-adm';
                       if ($_SESSION['nivel_usuario'] == 'Balconista') $pasta_painel = 'painel-balcao';

@@ -1,6 +1,5 @@
 <?php include_once("cabecalho.php"); ?>
 
-<!-- Breadcrumbs -->
 <section class="breadcrumbs-custom-inset">
   <div class="breadcrumbs-custom context-dark bg-overlay-39">
     <div class="container">
@@ -10,20 +9,18 @@
         <li class="active">Contato</li>
       </ul>
     </div>
-    <div class="box-position" style="background-image: url(images/25.p);"></div>
+    <div class="box-position" style="background-image: url(images/25.png);"></div>
   </div>
 </section>
 
-<!-- Informações de Contato -->
 <section class="section section-md section-first bg-default">
   <div class="container">
     <div class="row row-30 justify-content-center">
 
-      <!-- WhatsApp -->
       <div class="col-sm-8 col-md-6 col-lg-4">
         <article class="box-contacts">
           <div class="box-contacts-body">
-            <div class="box-contacts-icon fl-bigmug-line-cellphone55"></div>
+            <div class="box-contacts-icon fas fa-phone-alt"></div>
             <div class="box-contacts-decor"></div>
             <p class="box-contacts-link">
               <a href="https://api.whatsapp.com/send?phone=5548999692743" target="_blank">
@@ -34,11 +31,10 @@
         </article>
       </div>
 
-      <!-- Endereço -->
       <div class="col-sm-8 col-md-6 col-lg-4">
         <article class="box-contacts">
           <div class="box-contacts-body">
-            <div class="box-contacts-icon fl-bigmug-line-up104"></div>
+            <div class="box-contacts-icon fas fa-map-marker-alt"></div>
             <div class="box-contacts-decor"></div>
             <p class="box-contacts-link">
               Rua João Born, 1244 – Ponte do Imaruim<br>
@@ -48,11 +44,10 @@
         </article>
       </div>
 
-      <!-- Email -->
       <div class="col-sm-8 col-md-6 col-lg-4">
         <article class="box-contacts">
           <div class="box-contacts-body">
-            <div class="box-contacts-icon fl-bigmug-line-chat55"></div>
+            <div class="box-contacts-icon fas fa-envelope"></div>
             <div class="box-contacts-decor"></div>
             <p class="box-contacts-link">
               <a href="mailto:academiacamph@gmail.com">academiacamph@gmail.com</a>
@@ -65,20 +60,17 @@
   </div>
 </section>
 
-<!-- Mapa e Formulário -->
 <section class="section section-md section-last bg-default text-md-left">
   <div class="container">
     <div class="row row-50">
 
-      <!-- Mapa -->
       <div class="col-lg-6 section-map-small">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.513647106731!2d-48.65701535973799!3d-27.63957572406543"
-          width="100%" height="450" style="border:0;" allowfullscreen loading="lazy">
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.667824838421!2d-48.6657929!3d-27.6355328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9527339733333333%3A0x3333333333333333!2sRua%20Jo%C3%A3o%20Born%2C%201244%20-%20Ponte%20do%20Imaruim%2C%20Palho%C3%A7a%20-%20SC!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+          width="100%" height="450" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
 
-      <!-- Formulário -->
       <div class="col-lg-6">
         <h4 class="text-spacing-50">Formulário de Contato</h4>
 

@@ -1,5 +1,6 @@
 <?php
 include_once("conexao.php");
+include_once("config.php"); // Certifique-se de que o config.php existe para usar a $url_site
 ?>
 
 <!DOCTYPE html>
@@ -10,13 +11,19 @@ include_once("conexao.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
     <style>
         body {
             background-color: #1a1a1a;
             font-family: 'Source Sans Pro', sans-serif;
+            /* Se quiser uma imagem de fundo no body, use o caminho relativo */
+            background-image: url('images/background-login.jpg');
+            background-size: cover;
         }
 
         .login-block {
@@ -41,11 +48,13 @@ include_once("conexao.php");
             font-weight: bold;
             width: 100%;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .btn-staff:hover {
             background-color: #333;
             color: #fff;
+            text-decoration: none;
         }
 
         .label-input {
@@ -54,6 +63,8 @@ include_once("conexao.php");
             color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: block;
+            margin-bottom: 5px;
         }
 
         .input-field {
@@ -75,6 +86,11 @@ include_once("conexao.php");
             margin-top: 25px;
             font-size: 13px;
             color: #666;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #000;
         }
 
         .badge-staff {
@@ -99,25 +115,31 @@ include_once("conexao.php");
 
                     <form method="post" action="autenticar.php">
                         <div class="text-left">
-                            <span class="label-input">E-mail Profissional</span>
-                            <input class="input-field" type="text" name="username" placeholder="seu@email.com" required>
+                            <label class="label-input">E-mail Profissional</label>
+                            <input class="input-field" type="email" name="username" placeholder="seu@email.com"
+                                required>
 
-                            <span class="label-input">Senha de Acesso</span>
+                            <label class="label-input">Senha de Acesso</label>
                             <input class="input-field" type="password" name="pass" placeholder="******" required>
                         </div>
 
-                        <button class="btn btn-staff">AUTENTICAR EQUIPE</button>
+                        <button type="submit" class="btn btn-staff">AUTENTICAR EQUIPE</button>
                     </form>
 
-                    <a href="login.php" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para Acesso Aluno</a>
+                    <a href="login.php" class="back-link">
+                        <i class="fas fa-arrow-left"></i> Voltar para Acesso Aluno
+                    </a>
                 </div>
             </div>
         </section>
     </div>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <?php if (file_exists('js/mascaras.js')): ?>
+        <script src="js/mascaras.js"></script>
+    <?php endif; ?>
 </body>
 
 </html>

@@ -1,8 +1,9 @@
 <?php
 include_once("conexao.php");
 
-if (isset($_POST['email2']) and $_POST['email2'] != '') {
-    $email_rec = $_POST['email2'];
+// Correção do nome da variável enviada pelo formulário de inscrição do rodapé
+if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
+    $email_rec = $_POST['email_2'];
 }
 ?>
 
@@ -14,7 +15,7 @@ if (isset($_POST['email2']) and $_POST['email2'] != '') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
@@ -128,8 +129,8 @@ if (isset($_POST['email2']) and $_POST['email2'] != '') {
         }
     </style>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -153,12 +154,12 @@ if (isset($_POST['email2']) and $_POST['email2'] != '') {
 
                         <div class="copy-text">
                             Ainda não é aluno?
-                            <a href="" class="text-dark font-weight-bold" data-toggle="modal"
+                            <a href="#" class="text-dark font-weight-bold" data-toggle="modal"
                                 data-target="#modal-login">Matricule-se</a>
                         </div>
 
                         <div class="text-center mt-3">
-                            <a class="text-danger small" href="" data-toggle="modal" data-target="#modal-rec">Esqueceu
+                            <a class="text-danger small" href="#" data-toggle="modal" data-target="#modal-rec">Esqueceu
                                 sua senha?</a>
                         </div>
 
@@ -228,7 +229,7 @@ if (isset($_POST['email2']) and $_POST['email2'] != '') {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button id="btn-cadastro" class="btn btn-dark-modal">FINALIZAR MATRÍCULA</button>
+                    <button type="submit" id="btn-cadastro" class="btn btn-dark-modal">FINALIZAR MATRÍCULA</button>
                     </form>
                 </div>
             </div>
@@ -243,7 +244,7 @@ if (isset($_POST['email2']) and $_POST['email2'] != '') {
                     <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form method="post">
+                    <form method="post" id="form-recuperar">
                         <div class="form-group">
                             <label class="text-dark">Digite seu e-mail cadastrado</label>
                             <input type="email" class="form-control" id="email-recuperar" name="email-recuperar"
@@ -252,7 +253,7 @@ if (isset($_POST['email2']) and $_POST['email2'] != '') {
                         <div align="center" id="mensagem2"></div>
                 </div>
                 <div class="modal-footer">
-                    <button id="btn-rec" class="btn btn-dark-modal">ENVIAR SENHA</button>
+                    <button type="submit" id="btn-rec" class="btn btn-dark-modal">ENVIAR SENHA</button>
                     </form>
                 </div>
             </div>
@@ -264,6 +265,7 @@ if (isset($_POST['email2']) and $_POST['email2'] != '') {
 
     <script type="text/javascript">
         $(document).ready(function() {
+            // Ajax Cadastro
             $('#btn-cadastro').click(function(event) {
                 event.preventDefault();
                 $.ajax({
@@ -272,47 +274,41 @@ if (isset($_POST['email2']) and $_POST['email2'] != '') {
                     data: $('#form-cadastro').serialize(),
                     dataType: "text",
                     success: function(mensagem) {
-                        $('#mensagem').removeClass()
+                        $('#mensagem').removeClass();
                         if (mensagem.trim() == 'Cadastrado com Sucesso!!') {
-                            $('#mensagem').addClass('text-success')
-                            document.getElementById('username').value = document.getElementById(
-                                'email').value;
-                            document.getElementById('pass').value = document.getElementById(
-                                'senha').value;
+                            $('#mensagem').addClass('text-success').text(mensagem);
+                            $('#username').val($('#email').val());
+                            $('#pass').val($('#senha').val());
                             alert("Cadastro realizado! Você já pode entrar.");
                             $('#modal-login').modal('hide');
                         } else {
-                            $('#mensagem').addClass('text-danger')
-                            $('#mensagem').text(mensagem)
+                            $('#mensagem').addClass('text-danger').text(mensagem);
                         }
                     },
-                })
-            })
-        })
-    </script>
+                });
+            });
 
-    <script type="text/javascript">
-        $(document).ready(function() {
+            // Ajax Recuperar Senha (Corrigido para usar o ID do form específico)
             $('#btn-rec').click(function(event) {
                 event.preventDefault();
                 $.ajax({
                     url: "recuperar.php",
                     method: "post",
-                    data: $('form').serialize(),
+                    data: $('#form-recuperar').serialize(),
                     dataType: "text",
                     success: function(mensagem) {
-                        $('#mensagem2').removeClass()
+                        $('#mensagem2').removeClass();
                         if (mensagem.trim() == 'Senha enviada para o seu Email!') {
-                            $('#mensagem2').addClass('text-success')
-                            $('#email-recuperar').val('')
+                            $('#mensagem2').addClass('text-success');
+                            $('#email-recuperar').val('');
                         } else {
-                            $('#mensagem2').addClass('text-danger')
+                            $('#mensagem2').addClass('text-danger');
                         }
-                        $('#mensagem2').text(mensagem)
+                        $('#mensagem2').text(mensagem);
                     },
-                })
-            })
-        })
+                });
+            });
+        });
     </script>
 </body>
 
