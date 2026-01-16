@@ -1,17 +1,13 @@
 <?php
+// Configurações do Banco de Dados (Puxando do Railway)
+$usuario = getenv('MYSQLUSER') ?: 'root';
+$senha = getenv('MYSQLPASSWORD') ?: '';
+$banco = getenv('MYSQLDATABASE') ?: 'nova_arte';
+$host = getenv('MYSQLHOST') ?: 'localhost';
+$port = getenv('MYSQLPORT') ?: '3306';
 
-$email_adm = 'marlonrbanf@gmail.com';
-$nome_sistema = 'Nova Arte';
+// URL do Sistema - IMPORTANTE: Sem a barra no final para evitar links duplos
+$url_site = "https://web-production-5347.up.railway.app";
 
-// Identifica se está no Railway ou Local
-if (getenv('MYSQLHOST')) {
-    // URL real do seu projeto no Railway
-    $url_site = 'https://web-production-5347.up.railway.app/';
-} else {
-    // URL do seu ambiente local
-    $url_site = 'http://localhost/sistema_nova_arte_v5/';
-}
-
-// Opcional: Configurações globais que podem ser usadas nos e-mails e cabeçalhos
-$telefone_whatsapp = '(48) 99969-2743';
-$endereco_academia = 'Rua João Born, 1244 – Ponte do Imaruim, Palhoça – SC';
+// E-mail do administrador
+$email_adm = "seu-email@dominio.com";
