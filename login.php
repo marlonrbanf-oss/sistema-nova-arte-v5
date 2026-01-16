@@ -1,7 +1,6 @@
 <?php
 include_once("conexao.php");
 
-// Correção do nome da variável enviada pelo formulário de inscrição do rodapé
 if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
     $email_rec = $_POST['email_2'];
 }
@@ -15,8 +14,10 @@ if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
     <style>
@@ -129,8 +130,8 @@ if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
         }
     </style>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -143,8 +144,7 @@ if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
 
                         <form method="post" action="autenticar.php">
                             <span class="label-input100">Usuário (E-mail)</span>
-                            <input class="input100" type="text" name="username" id="username" placeholder="Seu e-mail"
-                                required>
+                            <input class="input100" type="text" name="username" id="username" placeholder="Seu e-mail" required>
 
                             <span class="label-input100">Senha</span>
                             <input class="input100" type="password" id="pass" name="pass" placeholder="******" required>
@@ -154,17 +154,14 @@ if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
 
                         <div class="copy-text">
                             Ainda não é aluno?
-                            <a href="#" class="text-dark font-weight-bold" data-toggle="modal"
-                                data-target="#modal-login">Matricule-se</a>
+                            <a href="#" class="text-dark font-weight-bold" data-toggle="modal" data-target="#modal-login">Matricule-se</a>
                         </div>
 
                         <div class="text-center mt-3">
-                            <a class="text-danger small" href="#" data-toggle="modal" data-target="#modal-rec">Esqueceu
-                                sua senha?</a>
+                            <a class="text-danger small" href="#" data-toggle="modal" data-target="#modal-rec">Esqueceu sua senha?</a>
                         </div>
 
-                        <a href="login_staff.php" class="link-staff"><i class="fas fa-user-shield"></i> Área da
-                            Equipe</a>
+                        <a href="login_staff.php" class="link-staff"><i class="fas fa-user-shield"></i> Área da Equipe</a>
                     </div>
 
                     <div class="col-md-8 banner-sec d-none d-md-flex">
@@ -186,51 +183,40 @@ if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
                     <form method="post" id="form-cadastro">
                         <div class="form-group">
                             <label class="text-dark font-weight-bold small">NOME COMPLETO</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do aluno"
-                                required>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do aluno" required>
                         </div>
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="text-dark font-weight-bold small">CPF</label>
-                                    <input type="text" class="form-control" id="cpf" name="cpf"
-                                        placeholder="000.000.000-00" required>
+                                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="text-dark font-weight-bold small">TELEFONE / WHATSAPP</label>
-                                    <input type="text" class="form-control" id="telefone" name="telefone"
-                                        placeholder="(00) 00000-0000" required>
+                                    <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="text-dark font-weight-bold small">E-MAIL (SERÁ SEU USUÁRIO)</label>
-                            <input type="email" class="form-control" id="email" name="email" required
-                                value="<?php echo @$email_rec ?>">
+                            <input type="email" class="form-control" id="email" name="email" required value="<?php echo @$email_rec ?>">
                         </div>
-
                         <div class="form-group">
                             <label class="text-dark font-weight-bold small">ENDEREÇO</label>
-                            <input type="text" class="form-control" id="endereco" name="endereco"
-                                placeholder="Rua, Número, Bairro" required>
+                            <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Rua, Número, Bairro" required>
                         </div>
-
                         <div class="form-group">
                             <label class="text-dark font-weight-bold small">CRIE UMA SENHA</label>
-                            <input type="password" class="form-control" id="senha" name="senha"
-                                placeholder="Mínimo 6 caracteres" required>
+                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Mínimo 6 caracteres" required>
                         </div>
-
                         <div align="center" id="mensagem" class="mt-3"></div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" id="btn-cadastro" class="btn btn-dark-modal">FINALIZAR MATRÍCULA</button>
-                    </form>
+                    <button type="submit" form="form-cadastro" id="btn-cadastro" class="btn btn-dark-modal">FINALIZAR MATRÍCULA</button>
                 </div>
             </div>
         </div>
@@ -247,14 +233,13 @@ if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
                     <form method="post" id="form-recuperar">
                         <div class="form-group">
                             <label class="text-dark">Digite seu e-mail cadastrado</label>
-                            <input type="email" class="form-control" id="email-recuperar" name="email-recuperar"
-                                required>
+                            <input type="email" class="form-control" id="email-recuperar" name="email-recuperar" required>
                         </div>
                         <div align="center" id="mensagem2"></div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="btn-rec" class="btn btn-dark-modal">ENVIAR SENHA</button>
-                    </form>
+                    <button type="submit" form="form-recuperar" id="btn-rec" class="btn btn-dark-modal">ENVIAR SENHA</button>
                 </div>
             </div>
         </div>
@@ -265,22 +250,18 @@ if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
 
     <script type="text/javascript">
         $(document).ready(function() {
-            // Ajax Cadastro
             $('#btn-cadastro').click(function(event) {
                 event.preventDefault();
                 $.ajax({
                     url: "cadastrar-usuario.php",
                     method: "post",
                     data: $('#form-cadastro').serialize(),
-                    dataType: "text",
                     success: function(mensagem) {
                         $('#mensagem').removeClass();
                         if (mensagem.trim() == 'Cadastrado com Sucesso!!') {
                             $('#mensagem').addClass('text-success').text(mensagem);
-                            $('#username').val($('#email').val());
-                            $('#pass').val($('#senha').val());
                             alert("Cadastro realizado! Você já pode entrar.");
-                            $('#modal-login').modal('hide');
+                            window.location.reload();
                         } else {
                             $('#mensagem').addClass('text-danger').text(mensagem);
                         }
@@ -288,19 +269,16 @@ if (isset($_POST['email_2']) and $_POST['email_2'] != '') {
                 });
             });
 
-            // Ajax Recuperar Senha (Corrigido para usar o ID do form específico)
             $('#btn-rec').click(function(event) {
                 event.preventDefault();
                 $.ajax({
                     url: "recuperar.php",
                     method: "post",
                     data: $('#form-recuperar').serialize(),
-                    dataType: "text",
                     success: function(mensagem) {
                         $('#mensagem2').removeClass();
                         if (mensagem.trim() == 'Senha enviada para o seu Email!') {
                             $('#mensagem2').addClass('text-success');
-                            $('#email-recuperar').val('');
                         } else {
                             $('#mensagem2').addClass('text-danger');
                         }
