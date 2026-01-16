@@ -1,4 +1,8 @@
-<?php @session_start(); ?>
+<?php
+@session_start();
+// Importante: Incluir o config aqui para garantir que a variável $url_site exista
+include_once("config.php");
+?>
 
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="pt-br">
@@ -17,15 +21,13 @@
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* Ajuste para exibir o nome do usuário logado de forma elegante */
     .dados-usuarios p {
       color: #fff;
       margin-bottom: 0;
@@ -42,9 +44,13 @@
       color: #ccc !important;
     }
 
-    /* Forçar cores de ícones que podem sumir */
     .icon {
       color: inherit;
+    }
+
+    /* Garante que o menu não fique azul sublinhado caso o CSS falhe */
+    .rd-nav-link {
+      text-decoration: none !important;
     }
   </style>
 </head>
@@ -60,6 +66,7 @@
           data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static"
           data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="70px"
           data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+
           <div class="rd-navbar-main-outer">
             <div class="rd-navbar-main">
               <div class="rd-navbar-panel">
@@ -67,36 +74,13 @@
                   data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                 <div class="rd-navbar-brand">
                   <a title="Ir para Página Inicial" class="brand" href="index.php">
-                    <img src="images/logo-default-196x47.png" alt="" width="196" height="47" />
+                    <img src="images/logo-default-196x47.png" alt="Logo" width="196" height="47" />
                   </a>
                 </div>
               </div>
 
               <div class="rd-navbar-main-element">
                 <div class="rd-navbar-nav-wrap">
-
-                  <div class="rd-navbar-basket-wrap">
-                    <button class="rd-navbar-basket fl-bigmug-line-shopping198"
-                      data-rd-navbar-toggle=".cart-inline">
-                      <span>2</span>
-                    </button>
-                    <div class="cart-inline">
-                      <div class="cart-inline-header">
-                        <?php if (isset($_SESSION['nome_usuario'])): ?>
-                          <div class="dados-usuarios">
-                            <p>
-                              Olá,
-                              <strong><?php echo explode(' ', $_SESSION['nome_usuario'])[0]; ?></strong>
-                              <a href="logout.php" title="Sair"><i
-                                  class="fas fa-sign-out-alt"></i></a>
-                            </p>
-                          </div>
-                        <?php endif; ?>
-                        <h5 class="cart-inline-title">Carrinho:<span> 2</span> Produtos</h5>
-                      </div>
-                    </div>
-                  </div>
-
                   <ul class="rd-navbar-nav">
                     <li class="rd-nav-item active"><a class="rd-nav-link"
                         href="index.php">Inicio</a></li>
@@ -106,6 +90,7 @@
 
                     <?php
                     if (!isset($_SESSION['nome_usuario'])) {
+                      // Link para login.php sempre em minúsculo
                       echo '<li class="rd-nav-item"><a class="rd-nav-link" href="login.php">Login</a></li>';
                     } else {
                       $pasta_painel = 'painel-cliente';
@@ -119,15 +104,15 @@
                 </div>
               </div>
 
-              <div class="rd-navbar-project-hamburger" data-multitoggle=".rd-navbar-main"
-                data-multitoggle-blur=".rd-navbar-wrap" data-multitoggle-isolate>
-                <div class="project-hamburger">
-                  <span class="project-hamburger-arrow-top"></span>
-                  <span class="project-hamburger-arrow-center"></span>
-                  <span class="project-hamburger-arrow-bottom"></span>
+              <?php if (isset($_SESSION['nome_usuario'])): ?>
+                <div style="margin-left: 20px;" class="d-none d-xl-block">
+                  <span style="color:white; font-size: 12px;">Olá,
+                    <?php echo explode(' ', $_SESSION['nome_usuario'])[0]; ?></span>
+                  <a href="logout.php" style="color:red; margin-left:10px;"><i
+                      class="fas fa-sign-out-alt"></i></a>
                 </div>
-                <div class="project-close"><span></span><span></span></div>
-              </div>
+              <?php endif; ?>
+
             </div>
           </div>
         </nav>
