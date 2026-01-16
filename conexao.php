@@ -1,20 +1,21 @@
 <?php
-// Dados da conexão (priorizando variáveis de ambiente da hospedagem)
-$host = $_ENV['MYSQLHOST'] ?? 'localhost';
-$user = $_ENV['MYSQLUSER'] ?? 'root';
-$pass = $_ENV['MYSQLPASSWORD'] ?? '';
-$db   = $_ENV['MYSQLDATABASE'] ?? 'nova_arte';
-$port = $_ENV['MYSQLPORT'] ?? 3306;
+// Usar getenv() é o jeito mais seguro no Railway/Linux
+$host = getenv('MYSQLHOST') ?: 'localhost';
+$user = getenv('MYSQLUSER') ?: 'root';
+$pass = getenv('MYSQLPASSWORD') ?: '';
+$db   = getenv('MYSQLDATABASE') ?: 'ferrovia'; // Ajustado conforme sua imagem
+$port = getenv('MYSQLPORT') ?: 3306;
 
 try {
-    // Criando a conexão via PDO (necessário para os códigos anteriores)
+    // Criando a conexão via PDO
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4", $user, $pass);
     
-    // Configura para mostrar erros caso algo dê errado no SQL
+    // Configurações de erro e busca
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-} catch (Exception $e) {
+} catch (PDOException $e) {
+    // Em produção, é melhor não mostrar a senha no erro, mas para testar deixaremos o getMessage
     echo "Erro ao conectar com o banco de dados: " . $e->getMessage();
     exit();
 }
